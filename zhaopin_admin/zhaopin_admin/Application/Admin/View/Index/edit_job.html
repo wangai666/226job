@@ -1,0 +1,157 @@
+<include file="Public/header" /> 
+<link href="__PUBLIC__/Admin/ueditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+
+<!-- content start -->
+<div class="admin-content">
+  <div class="admin-content-body">
+    <div class="am-cf am-padding am-padding-bottom-0">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">发布招聘</strong> /
+        <small>add_job</small>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="am-tabs am-margin" data-am-tabs>
+      <ul class="am-tabs-nav am-nav am-nav-tabs">
+        <li class="am-active"><a href="#tab1">招聘信息</a></li>
+      </ul>
+      <div class="am-tabs-bd">
+      <form action="{:U('Index/edit_job')}" method="post">
+        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">招聘企业</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+                <input type="text" name="company_name" value="{$job_info.company_name}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">招聘职位</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+                <input type="text" name="job_name" value="{$job_info.job_name}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">职位诱惑</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+                <input type="text" name="job_welf" value="{$job_info.job_welf}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">薪资范围</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+                <input type="text" name="price" value="{$job_info.price}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">学历</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+               <input type="text" name="job_edu" value="{$job_info.job_edu}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">工作地址</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+                <input type="text" name="city" value="{$job_info.city}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">招聘人数</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+                <input type="text" name="job_number" value="{$job_info.job_number}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">投递邮箱</div>
+            <div class="am-form-group">
+            <div class="am-u-sm-8 am-u-md-10">
+                <input type="text" name="job_email" value="{$job_info.job_email}">
+            </div>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">工作状态</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <select data-am-selected="{btnSize: 'sm'}" name="work_status">
+                <option value="0" {$job_info['work_status'] == 0 ?selected:''}>全职</option>
+                <option value="1" {$job_info['work_status'] == 1 ?selected:''}>实习</option>
+                <option value="2" {$job_info['work_status'] == 2 ?selected:''}>兼职</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">招聘状态</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <select data-am-selected="{btnSize: 'sm'}" name="job_status">
+                <option value="0" {$job_info['job_status'] == 0 ?selected:''}>进行中</option>
+                <option value="1" {$job_info['job_status'] == 1 ?selected:''}>已结束</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top-sm">
+            <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
+              岗位描述
+            </div>
+            <div class="am-u-sm-12 am-u-md-10">
+              <textarea name="job_desc" id="job_desc" style="width:800px;height:300px;">{$job_info.job_desc}</textarea>  
+            </div>
+          </div>
+          <div class="am-g am-margin-top-sm">
+            <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
+              职位要求
+            </div>
+            <div class="am-u-sm-12 am-u-md-10">
+              <textarea name="job_req" id="job_req" style="width:800px;height:300px;">{$job_info.job_req}</textarea>  
+            </div>
+          </div>
+        </div>
+
+  <center>
+    <div class="am-margin">
+      <input type="hidden" value="{$job_info.id}" name="id">
+      <button type="submit" class="am-btn am-btn-primary am-radius">保存</button>
+    </div>
+    </center>
+      </form>
+
+      </div>
+    </div>
+
+  </div>
+
+
+<include file="Public/footer" />
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/umeditor.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script>
+    var um = UM.getEditor('job_desc');
+    var um = UM.getEditor('job_req');
+</script> 
+

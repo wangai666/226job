@@ -1,0 +1,97 @@
+<include file="Public/header" /> 
+
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">招聘列表</strong> / <small>job_list</small></div>
+      </div>
+
+      <hr>
+  
+    <form action="{:U('Index/search_job')}" method="get">
+      <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-3">
+          <div class="am-input-group am-input-group-sm">
+            <input type="text" class="am-form-field" name="keywords" value="{$keywords}" placeholder="输入招聘企业名称">
+          <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="submit">搜索</button>
+          </span>
+          </div>
+        </div>
+      </div>
+    </form>
+      <div class="am-g">
+        <div class="am-u-sm-12">
+          <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead>
+              <tr>
+                <th class="table-id">ID</th><th class="table-title">招聘企业</th><th class="table-type">招聘职位</th><th class="table-author am-hide-sm-only">招聘状态</th><th class="table-date am-hide-sm-only">发布时间</th><th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <foreach name="job_list" item="vo">
+                <tr>
+                  <td>{$vo.id}</td>
+                  <td><a href="#">{$vo.company_name}</a></td>
+                  <td>{$vo.job_name}</td>
+                  <td class="am-hide-sm-only">{$vo.job_status}</td>
+                  <td class="am-hide-sm-only">{$vo.add_time}</td>
+                  <td>
+                    <div class="am-btn-toolbar">
+                      <div class="am-btn-group am-btn-group-xs">
+                      <a href="{:U('Index/edit_job',array('id'=>$vo[id]))}"><button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button></a>
+                      <a><button id="{$vo.id}" onclick="confirm_del_job(this)"   type="button"  class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button></a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </foreach>
+              </tbody>
+            </table>
+            <div class="am-cf">
+              共 {$count} 条招聘
+              <div class="am-fr">
+                <ul class="am-pagination">
+                  {$page}
+                </ul>
+              </div>
+            </div>
+            <hr />
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+<include file="Public/footer" /> 
+<script>
+  $('.am-fr ul div a').unwrap('div').wrap('<li></li>');
+  $('.am-fr ul span').wrap('<li class="am-active"></li>');
+
+  function confirm_del_job(_this)
+  {
+    if (confirm("确定要删除该招聘吗?该操作不可逆!")) {
+      var my_this = _this;
+      var id = $(my_this).attr('id');
+      $.ajax({
+        url:"{:U('Index/del_job')}",
+        type:"post",
+        data:'id='+id,
+        success:function(data){
+          if (data == 1) {
+            alert("删除成功");window.location.reload();
+          } else {
+            alert("删除失败");window.location.reload();
+          }
+        }
+      });
+
+    } else {
+      return false;
+    }
+  }
+</script>
