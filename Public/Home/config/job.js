@@ -1,0 +1,3 @@
+﻿$(function(){pager();})
+function pager(){$("#paging1").pagination({items:$("#ContentPlaceHolder1_sumCount").val(),itemsOnPage:$("#pageSize").val(),cssStyle:'light-theme',onPageClick:function(pageNumber,event){$('#pageIndex').val(pageNumber);load_jobs();},onInit:function(){}});}
+function load_jobs(){var pageIndex=$('#pageIndex').val();var pageSize=$('#pageSize').val();$.ajax({type:"Post",url:"/HttpProxyAccess.aspx/ajax_jobs",data:"{'pageIndex': '"+ pageIndex+"','pageSize': '"+ pageSize+"'}",contentType:"application/json; charset=utf-8",dataType:"json",cache:false,success:function(data){var json=eval('('+ data.d+')');$("#job_context").html(json.msg);$('#ContentPlaceHolder1_sumCount').val(json.result);if($('#pageIndex').val()==1){pager();}}});}

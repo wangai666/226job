@@ -1,0 +1,51 @@
+<aside class="col-md-3 col-sm-4">
+<section class="panel panel-index" style="border:1px solid #ededed;">
+    <div class="panel-body">
+        <ul class="list-unstyled whitehat-right-banner">
+        <li class="active"><a href="http://wpa.qq.com/msgrd?v=3&uin=123456&site=qq&menu=yes">发布招聘</a></li>
+        </ul>
+    </div>
+</section>
+    <section class="panel" style="border:1px solid #ededed;">
+        <div class="panel-heading">
+            <h3 class="panel-title">热门招聘</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-unstyled">
+            <foreach name="top" item="vo">
+                <li>
+                    <dl>
+                        <dd class="avatar"><a href="{:U('Index/details',array('id'=>$vo[id]))}">
+                            <img src="__PUBLIC__/Home/config/images/default.png"></a></dd>
+                        <dt style="text-overflow:ellipsis;overflow:hidden;"><a href="{:U('Index/details',array('id'=>$vo[id]))}" title="{$vo.job_name}">{$vo.job_name}</a></dt>
+                        <dd class="description">{$vo.company_name}</dd>
+                    </dl>
+                </li>
+            </foreach>
+            </ul>
+        </div>
+    </section>
+
+</aside>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-md-5 col-md-offset-4">
+<div class="center1">
+© 2018 <em>226safe team</em> All Rights Reserved
+<br>
+</div>
+</div>
+
+<script src="__PUBLIC__/Home/job.js"></script>
+<script src="__PUBLIC__/Home/base.js"></script>
+<script src="__PUBLIC__/Home/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/bootstrap.js"></script>
+</form>
+
+
+</body></html>
